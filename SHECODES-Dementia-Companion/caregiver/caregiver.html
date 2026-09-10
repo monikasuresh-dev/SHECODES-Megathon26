@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caregiver Portal - SHECODES Dementia Companion</title>
+  <link rel="stylesheet" href="/caregiver/caregiver.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Collapsible Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-container">
+          <div class="brand-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12h6"/>
+              <path d="M12 9v6"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h2>SHECODES</h2>
+            <span>Dementia Companion</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resident Context Card in Sidebar -->
+      <div class="resident-sidebar-badge">
+        <div class="resident-sidebar-avatar">LN</div>
+        <div class="resident-sidebar-details">
+          <h4 id="sb-patient-name">Lakshmi Narayanan</h4>
+          <span class="resident-suite" id="sb-patient-room">Anna Nagar, Chennai</span>
+        </div>
+        <span class="status-indicator-dot" title="Active Monitoring"></span>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-item" data-tab="patient">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Patient Profile</span>
+        </button>
+
+        <button class="nav-item" data-tab="memories">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          <span>Memories</span>
+        </button>
+
+        <button class="nav-item" data-tab="alerts">
+          <div class="nav-item-content">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <span>Alerts</span>
+          </div>
+          <span class="nav-pill" id="sb-alerts-badge">0</span>
+        </button>
+
+        <button class="nav-item" data-tab="settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" class="simulator-button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>Open Phone Simulator</span>
+          <span class="external-arrow">&rarr;</span>
+        </a>
+
+        <div class="telemetry-live-badge">
+          <span class="pulse-dot"></span>
+          <span>LIVE TELEMETRY</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      <!-- Top Application Header Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-toggle-btn" id="mobile-toggle" aria-label="Toggle menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div>
+            <h1 class="page-title" id="page-title">Caregiver Dashboard</h1>
+            <p class="page-subtitle" id="page-subtitle">Real-time interaction risk signals & persistent health memory</p>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="refresh-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+            <span id="refresh-time">Updated just now</span>
+          </div>
+
+          <div class="caregiver-profile-pill">
+            <div class="caregiver-avatar">AN</div>
+            <div class="caregiver-info">
+              <span class="cg-name">Ananya Narayanan</span>
+              <span class="cg-role">Primary Caregiver</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body Container -->
+      <main class="content-container">
+
+        <!-- ===================================================================
+             VIEW 1: DASHBOARD OVERVIEW
+             =================================================================== -->
+        <section class="tab-view active" id="view-dashboard">
+          
+          <!-- Top Row Metric / Status Cards -->
+          <div class="dashboard-metrics-grid">
+            
+            <!-- Patient Status Card -->
+            <div class="card status-card">
+              <div class="card-header">
+                <span class="card-tag">RESIDENT STATUS</span>
+                <span class="status-pill status-pill-active" id="resident-session-badge">Patient OFFLINE</span>
+              </div>
+              <div class="status-resident-body">
+                <div class="resident-avatar-lg">EH</div>
+                <div class="resident-info-lg">
+                  <h3 id="patient-full-name">Lakshmi Narayanan</h3>
+                  <p class="sub-text" id="patient-room">Anna Nagar, Chennai</p>
+                  <p class="condition-badge" id="patient-condition">Mild-to-Moderate Dementia</p>
+                  <p class="sub-text" id="patient-connection-status">Connection: OFFLINE</p>
+                </div>
+              </div>
+              <div class="status-footer-row">
+                <div class="status-micro-metric">
+                  <span class="micro-label">Last Turn</span>
+                  <span class="micro-val" id="last-interaction-time">Awaiting call</span>
+                </div>
+                <div class="status-micro-metric">
+                  <span class="micro-label">Overall State</span>
+                  <span class="micro-val" id="overall-resident-state">Monitored</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Distress Monitoring Card -->
+            <div class="card distress-card">
+              <div class="card-header">
+                <span class="card-tag">CONVERSATIONAL DISTRESS</span>
+                <span class="risk-badge" id="risk-pill">GREEN</span>
+              </div>
+              <div class="distress-body">
+                <div class="distress-score-container">
+                  <span class="distress-large-number" id="distress-score-num">0</span>
+                  <span class="distress-denom">/ 100</span>
+                </div>
+                <div class="progress-bar-wrapper">
+                  <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="distress-bar" style="width: 0%;"></div>
+                  </div>
+                  <div class="progress-labels">
+                    <span>0 (Calm)</span>
+                    <span>30 (Warning)</span>
+                    <span>60+ (Critical)</span>
+                  </div>
+                </div>
+                <p class="distress-explanation" id="risk-explanation">Normal conversation with low distress.</p>
+              </div>
+              <div class="active-signals-row" id="active-signals-container">
+                <span class="signal-badge">Normal</span>
+              </div>
+            </div>
+
+            <!-- Repetition Monitoring Card -->
+            <div class="card repetition-card">
+              <div class="card-header">
+                <span class="card-tag">REPETITION TRACKER</span>
+                <span class="repetition-badge" id="repetition-level-badge">NORMAL</span>
+              </div>
+              <div class="repetition-body">
+                <div class="repetition-count-box">
+                  <span class="repetition-number" id="repetition-count-num">0</span>
+                  <span class="repetition-unit">Repeated turns</span>
+                </div>
+                <div class="repetition-details">
+                  <div class="repetition-topic-line">
+                    <span class="topic-label">Focus Topic:</span>
+                    <span class="topic-val" id="repetition-topic-val">None</span>
+                  </div>
+                  <p class="repetition-advice" id="repetition-advice-text">
+                    Deterministic detection monitors repetitive questions to protect against anxiety spirals.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Escalation Alerts Count Card -->
+            <div class="card alerts-summary-card">
+              <div class="card-header">
+                <span class="card-tag">CARE ESCALATIONS</span>
+                <span class="alerts-badge" id="alerts-count-badge">0 Active</span>
+              </div>
+              <div class="alerts-summary-body">
+                <div class="alerts-huge-count" id="alerts-count">0</div>
+                <p class="alerts-summary-sub" id="alert-sub">Zero unacknowledged alerts</p>
+                <button class="view-alerts-link" id="jump-to-alerts-btn">
+                  <span>View All Alerts</span> &rarr;
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live WebRTC Intercom Section -->
+          <div class="card live-call-card" id="live-call-card">
+            <div class="card-header">
+              <div class="card-header-left">
+                <span class="card-tag">CAREGIVER WEBRTC LIVE INTERCOM</span>
+                <h3 style="margin: 0; font-size: 1.05rem;">Live Audio Session</h3>
+              </div>
+              <span class="badge suite-badge" id="call-status-badge">WAITING</span>
+            </div>
+            <div class="live-call-body" style="padding: 1rem 1.25rem;">
+              <div class="live-call-info-row" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div class="live-call-status-box" style="display: flex; align-items: center; gap: 0.65rem;">
+                  <span class="status-indicator-dot" id="call-status-dot" style="width: 10px; height: 10px; border-radius: 50%; background: #94A3B8; display: inline-block;"></span>
+                  <span class="call-status-text" id="call-status-text" style="font-size: 0.9rem; color: var(--text-main); font-weight: 500;">Ready for live human-to-resident audio communication.</span>
+                  <span class="call-duration" id="call-duration" style="display: none; font-size: 0.85rem; font-weight: 600; padding: 2px 8px; background: #E2E8F0; border-radius: 6px;">00:00</span>
+                </div>
+                <div class="call-actions-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                  <button class="call-action-btn btn-join" id="btn-join-session" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #2563EB; color: #fff; border: none; padding: 0.55rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: background 0.15s;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <span>JOIN LIVE SESSION</span>
+                  </button>
+                  <button class="call-action-btn btn-mute" id="btn-mute" style="display: none; background: #475569; color: #fff; border: none; padding: 0.55rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer;">
+                    <span>MUTE</span>
+                  </button>
+                  <button class="call-action-btn btn-end" id="btn-end" style="display: none; background: #DC2626; color: #fff; border: none; padding: 0.55rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer;">
+                    <span>END SESSION</span>
+                  </button>
+                </div>
+              </div>
+              <audio id="remote-caregiver-audio" autoplay playsinline style="display: none;"></audio>
+            </div>
+          </div>
+
+          <!-- Lower Row: Active Alerts Feed & Conversational Timeline -->
+          <div class="dashboard-bottom-grid">
+            
+            <!-- Escalation Alerts Feed Card -->
+            <div class="card alerts-feed-card">
+              <div class="card-header">
+                <div class="card-header-left">
+                  <h3>Active Caregiver Alerts</h3>
+                  <span class="card-subtitle">Real-time alerts requiring validation or check-in</span>
+                </div>
+                <span class="badge" id="alerts-badge-text">0 Active</span>
+              </div>
+              <div class="alerts-list" id="alerts-container">
+                <div class="empty-state" id="alerts-empty">
+                  <div class="empty-icon">🛡️</div>
+                  <p><strong>No active alerts.</strong> Resident interactions are within normal parameters.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Interaction Timeline -->
+            <div class="card timeline-card">
+              <div class="card-header">
+                <div class="card-header-left">
+                  <h3>Recent Conversational Exchanges</h3>
+                  <span class="card-subtitle">Telemetry between Lakshmi and Phone Companion</span>
+                </div>
+                <span class="badge suite-badge">Live Transcript</span>
+              </div>
+              <div class="timeline-list" id="timeline-container">
+                <div class="empty-state" id="timeline-empty">
+                  <div class="empty-icon">📞</div>
+                  <p><strong>Waiting for patient interactions.</strong> Press the green TALK button on the Phone Simulator to begin conversation.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ===================================================================
+             VIEW 2: PATIENT PROFILE PAGE
+             =================================================================== -->
+        <section class="tab-view" id="view-patient">
+          <div class="profile-layout-grid">
+            
+            <!-- Resident Main Demographic Card -->
+            <div class="card profile-header-card">
+              <div class="profile-avatar-banner">
+                <div class="resident-avatar-xl">LN</div>
+                <div class="profile-banner-info">
+                  <div class="name-status-row">
+                    <h2 id="prof-full-name">Lakshmi Narayanan</h2>
+                    <span class="badge suite-badge" id="prof-patient-id">PATIENT-84920</span>
+                  </div>
+                  <p class="prof-condition-sub" id="prof-condition">Mild-to-Moderate Alzheimer's Dementia</p>
+                  <div class="prof-meta-tags">
+                    <span class="meta-tag">Age: <strong id="prof-age">72</strong></span>
+                    <span class="meta-tag">Home: <strong id="prof-room">Anna Nagar, Chennai</strong></span>
+                    <span class="meta-tag">Language: <strong id="prof-lang">Tamil</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Primary Caregiver & Family Contacts Card -->
+            <div class="card contacts-card">
+              <div class="card-header">
+                <h3>Family & Care Team Contacts</h3>
+                <span class="card-subtitle">Authorized support network</span>
+              </div>
+              <div class="contacts-list">
+                
+                <div class="contact-card primary-contact">
+                  <div class="contact-header">
+                    <span class="contact-role-badge">PRIMARY CAREGIVER</span>
+                    <span class="contact-rel">Daughter</span>
+                  </div>
+                  <h4 id="prof-cg-name">Ananya Narayanan</h4>
+                  <p class="contact-phone" id="prof-cg-phone">+91 90000 12345</p>
+                  <p class="contact-schedule" id="prof-cg-schedule">Visits every evening around 5:30 PM</p>
+                  <p class="contact-note" id="prof-cg-note">Works in Chennai and visits Lakshmi faithfully every evening after work.</p>
+                </div>
+
+                <div class="contact-card">
+                  <div class="contact-header">
+                    <span class="contact-role-badge badge-neutral">FAMILY CONTACT</span>
+                    <span class="contact-rel">Son</span>
+                  </div>
+                  <h4 id="prof-sec-name">Ravi Narayanan</h4>
+                  <p class="contact-phone" id="prof-sec-phone">+91 90000 67890</p>
+                  <p class="contact-schedule" id="prof-sec-loc">Lives in Bengaluru, calls on Sunday mornings</p>
+                </div>
+
+                <div class="contact-card">
+                  <div class="contact-header">
+                    <span class="contact-role-badge badge-neutral">ON-DUTY STAFF</span>
+                    <span class="contact-rel">Nurse</span>
+                  </div>
+                  <h4 id="prof-nurse-name">Care Team</h4>
+                  <p class="contact-phone" id="prof-nurse-ext">Chennai Home Care</p>
+                  <p class="contact-schedule" id="prof-nurse-notes">Supports morning medicines and daily routines</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Comfort Anchors & Calming Cues -->
+            <div class="card anchors-card">
+              <div class="card-header">
+                <h3>Comfort Anchors & Calming Cues</h3>
+                <span class="card-subtitle">Grounding constants that reduce disorientation</span>
+              </div>
+              <div class="anchors-grid">
+                <div class="anchor-box">
+                  <div class="anchor-icon">🐕</div>
+                  <div class="anchor-details">
+                    <h4 id="anchor-pet-title">Cherished Pet: Muthu</h4>
+                    <p id="anchor-pet-desc">Muthu is safe and happy at Ananya's house.</p>
+                  </div>
+                </div>
+
+                <div class="anchor-box">
+                  <div class="anchor-icon">🌼</div>
+                  <div class="anchor-details">
+                    <h4>Kolam & Garden Time</h4>
+                    <p>Lakshmi's morning kolam and the plants near the veranda bring comfort and a familiar rhythm.</p>
+                  </div>
+                </div>
+
+                <div class="anchor-box">
+                  <div class="anchor-icon">☕</div>
+                  <div class="anchor-details">
+                    <h4>Filter Coffee, Tea & Home Cooking</h4>
+                    <p id="anchor-meal-desc">Filter coffee or warm tea with idli, dosa, sambar, rasam, lemon rice and curd rice.</p>
+                  </div>
+                </div>
+
+                <div class="anchor-box">
+                  <div class="anchor-icon">🎶</div>
+                  <div class="anchor-details">
+                    <h4>Carnatic Music & Tamil Film Songs</h4>
+                    <p>Familiar Carnatic music and old Tamil songs create a peaceful, reassuring atmosphere.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Primary Calming Phrase -->
+              <div class="calming-phrase-banner">
+                <span class="banner-title">OFFICIAL GROUNDING PHRASE</span>
+                <blockquote id="prof-calming-phrase">
+                  "You are safe and loved at home. Ananya will come home at 5:30 PM."
+                </blockquote>
+              </div>
+            </div>
+
+            <!-- Clinical Care Guidelines -->
+            <div class="card guidelines-card">
+              <div class="card-header">
+                <h3>Interaction & Validation Guidelines</h3>
+                <span class="card-subtitle">Protocols used by companion intelligence</span>
+              </div>
+              <div class="guidelines-list">
+                <div class="guideline-item">
+                  <h4>Validation Approach</h4>
+                  <p id="prof-guideline-val">
+                    Always validate Lakshmi's feelings first. Never argue, dispute memories, or abruptly correct dates.
+                  </p>
+                </div>
+                <div class="guideline-item">
+                  <h4>Grounding Strategy</h4>
+                  <p id="prof-guideline-ground">
+                    Remind gently of familiar constants: daughter Ananya's 5:30 PM visit, pet Muthu, and the Anna Nagar home.
+                  </p>
+                </div>
+                <div class="guideline-item">
+                  <h4>Cognitive Load Limits</h4>
+                  <p id="prof-guideline-limit">
+                    Maximum 2-3 gentle sentences. Keep language simple, warm, and soothing.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ===================================================================
+             VIEW 3: MEMORIES PAGE
+             =================================================================== -->
+        <section class="tab-view" id="view-memories">
+          <div class="memories-layout">
+            
+            <div class="memories-intro-bar">
+              <div>
+                <h2>Persistent Health Memories & Comfort Anchors</h2>
+                <p>Structured patient context stored in the companion memory layer to ground conversations.</p>
+              </div>
+              <span class="badge suite-badge">Grounded in patient.json</span>
+            </div>
+
+            <div class="memories-category-grid">
+              
+              <!-- Category: Family & Relationships -->
+              <div class="card memory-cat-card">
+                <div class="memory-cat-header">
+                  <div class="cat-icon-wrap icon-blue">👨‍👩‍👧</div>
+                  <div>
+                    <h3>Family & Loved Ones</h3>
+                    <span>Core emotional anchors</span>
+                  </div>
+                </div>
+                <div class="memory-items-list">
+                  <div class="memory-item">
+                    <h4>Ananya Narayanan (Daughter)</h4>
+                    <p>Lakshmi's primary emotional anchor. Ananya works in Chennai and visits her mother every evening around 5:30 PM.</p>
+                    <span class="memory-tag">Grounding Cue: "Ananya will come home at 5:30 PM."</span>
+                  </div>
+                  <div class="memory-item">
+                    <h4>Ravi Narayanan (Son)</h4>
+                    <p>Lives in Bengaluru and calls Lakshmi every Sunday morning. Lakshmi is very proud of his work and enjoys talking about his family.</p>
+                    <span class="memory-tag">Family Member</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Category: Personal History & Hobbies -->
+              <div class="card memory-cat-card">
+                <div class="memory-cat-header">
+                  <div class="cat-icon-wrap icon-amber">🎨</div>
+                  <div>
+                    <h3>Personal History & Passions</h3>
+                    <span>Lifelong interests & hobbies</span>
+                  </div>
+                </div>
+                <div class="memory-items-list">
+                  <div class="memory-item">
+                    <h4>Kolam & Morning Prayers</h4>
+                    <p>Lakshmi used to draw traditional kolams outside her home every morning. The familiar patterns and routine create a strong sense of comfort.</p>
+                    <span class="memory-tag">Comfort Anchor</span>
+                  </div>
+                  <div class="memory-item">
+                    <h4>Carnatic Music</h4>
+                    <p>Lakshmi has always enjoyed Carnatic music, especially songs played during peaceful evenings at home.</p>
+                    <span class="memory-tag">Auditory Cue</span>
+                  </div>
+                  <div class="memory-item">
+                    <h4>Tamil Film Songs</h4>
+                    <p>Old Tamil songs from her younger years bring back positive memories and help her feel familiar and calm.</p>
+                    <span class="memory-tag">Auditory Cue</span>
+                  </div>
+                  <div class="memory-item">
+                    <h4>Cooking Traditional Food</h4>
+                    <p>Lakshmi loved preparing traditional Tamil meals for family gatherings, especially sambar, rasam, lemon rice and homemade sweets.</p>
+                    <span class="memory-tag">Tactile / Sensory Memory</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Category: Cherished Pets -->
+              <div class="card memory-cat-card">
+                <div class="memory-cat-header">
+                  <div class="cat-icon-wrap icon-green">🐾</div>
+                  <div>
+                    <h3>Cherished Pets</h3>
+                    <span>Animal companionship anchors</span>
+                  </div>
+                </div>
+                <div class="memory-items-list">
+                  <div class="memory-item">
+                    <h4>Muthu the Dog</h4>
+                    <p>Lakshmi's beloved family dog. She remembers Muthu sitting near the veranda and following her around the garden.</p>
+                    <span class="memory-tag">Grounding Cue: "Muthu is safe and happy at Ananya's house."</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Category: Important Places -->
+              <div class="card memory-cat-card">
+                <div class="memory-cat-header">
+                  <div class="cat-icon-wrap icon-purple">🏡</div>
+                  <div>
+                    <h3>Familiar & Safe Places</h3>
+                    <span>Physical locations for spatial reassurance</span>
+                  </div>
+                </div>
+                <div class="memory-items-list">
+                  <div class="memory-item">
+                    <h4>Anna Nagar Home</h4>
+                    <p>Lakshmi's familiar home in Chennai. Her favorite chair is near the window where she can see the street and morning activity.</p>
+                    <span class="memory-tag">Current Home</span>
+                  </div>
+                  <div class="memory-item">
+                    <h4>Ananya's House</h4>
+                    <p>Her daughter's home where she feels safe and spends weekends with family.</p>
+                    <span class="memory-tag">Family Home</span>
+                  </div>
+                  <div class="memory-item">
+                    <h4>Marina Beach</h4>
+                    <p>Lakshmi has fond memories of visiting Marina Beach with her family during her younger years.</p>
+                    <span class="memory-tag">Familiar Place</span>
+                  </div>
+                  <div class="memory-item">
+                    <h4>Kapaleeshwarar Temple</h4>
+                    <p>A familiar Chennai landmark associated with family visits and peaceful memories.</p>
+                    <span class="memory-tag">Familiar Place</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Category: Daily Routine -->
+              <div class="card memory-cat-card full-span-card">
+                <div class="memory-cat-header">
+                  <div class="cat-icon-wrap icon-slate">⏰</div>
+                  <div>
+                    <h3>Daily Routine Schedule</h3>
+                    <span>Predictable temporal grounding schedule</span>
+                  </div>
+                </div>
+                <div class="routine-timeline-grid">
+                  <div class="routine-slot">
+                    <span class="slot-time">6:30 AM</span>
+                    <span class="slot-title">Morning Prayer</span>
+                    <p>Wake up, freshen up, drink warm water and spend a few quiet minutes listening to devotional music.</p>
+                  </div>
+                  <div class="routine-slot">
+                    <span class="slot-time">8:00 AM</span>
+                    <span class="slot-title">Breakfast</span>
+                    <p>Idli or dosa with sambar and chutney, followed by morning medicines.</p>
+                  </div>
+                  <div class="routine-slot highlight-slot">
+                    <span class="slot-time">10:30 AM</span>
+                    <span class="slot-title">Kolam & Garden Time</span>
+                    <p>Sit near the veranda, look at the plants and talk with the caregiver.</p>
+                  </div>
+                  <div class="routine-slot">
+                    <span class="slot-time">1:00 PM</span>
+                    <span class="slot-title">Lunch</span>
+                    <p>Rice, sambar, vegetables and curd. Familiar homemade food helps maintain a comfortable routine.</p>
+                  </div>
+                  <div class="routine-slot">
+                    <span class="slot-time">4:00 PM</span>
+                    <span class="slot-title">Evening Tea</span>
+                    <p>Warm tea with a light snack while listening to familiar Tamil music.</p>
+                  </div>
+                  <div class="routine-slot highlight-slot">
+                    <span class="slot-time">5:30 PM</span>
+                    <span class="slot-title">Ananya's Visit</span>
+                    <p>Daughter Ananya comes home, talks with Lakshmi and shares tea with her.</p>
+                  </div>
+                  <div class="routine-slot">
+                    <span class="slot-time">8:30 PM</span>
+                    <span class="slot-title">Bedtime Wind-down</span>
+                    <p>Soft Carnatic music, familiar prayers and a calm bedtime routine.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ===================================================================
+             VIEW 4: ALERTS PAGE
+             =================================================================== -->
+        <section class="tab-view" id="view-alerts">
+          <div class="alerts-layout">
+            
+            <!-- Alert Status Metrics Bar -->
+            <div class="alerts-metrics-bar">
+              <div class="metric-card">
+                <span class="metric-num-red" id="alerts-page-active-count">0</span>
+                <span class="metric-label-txt">Active Escalations</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-num-amber" id="alerts-page-monitored-count">0</span>
+                <span class="metric-label-txt">Monitored Inquiries</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-num-green" id="alerts-page-ack-count">0</span>
+                <span class="metric-label-txt">Acknowledged Today</span>
+              </div>
+            </div>
+
+            <!-- Alerts Feed Container -->
+            <div class="card alerts-full-card">
+              <div class="card-header">
+                <div>
+                  <h3>Escalation & Caregiver Alerts Feed</h3>
+                  <p class="card-subtitle">Real-time alerts triggered by conversational distress or repeated concerns</p>
+                </div>
+                <div class="filter-pills">
+                  <button class="filter-pill active" data-filter="all">All Alerts</button>
+                  <button class="filter-pill" data-filter="active">Active Only</button>
+                  <button class="filter-pill" data-filter="acknowledged">Acknowledged</button>
+                </div>
+              </div>
+
+              <div class="alerts-feed-container" id="alerts-feed-list">
+                <div class="empty-state" id="alerts-feed-empty">
+                  <div class="empty-icon">🛡️</div>
+                  <h4>No Active Escalation Alerts</h4>
+                  <p>Resident interactions are currently within safe parameters. Any distress or repetition will be reported here immediately.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- ===================================================================
+             VIEW 5: SETTINGS PAGE
+             =================================================================== -->
+        <section class="tab-view" id="view-settings">
+          <div class="settings-layout-grid">
+            
+            <!-- Caregiver Contact Profile Settings -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h3>Caregiver Profile & Notification Preferences</h3>
+                <span class="card-subtitle">Configured support receiver</span>
+              </div>
+              <div class="settings-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Caregiver Name</label>
+                    <input type="text" class="form-control" value="Ananya Narayanan" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Relationship</label>
+                    <input type="text" class="form-control" value="Daughter" readonly>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Emergency Phone</label>
+                    <input type="text" class="form-control" value="+91 90000 12345" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Workplace / Availability</label>
+                    <input type="text" class="form-control" value="Chennai (Visits at 5:30 PM)" readonly>
+                  </div>
+                </div>
+                <div class="settings-toggle-row">
+                  <div>
+                    <strong>Visual Alert Flash on RED Risk</strong>
+                    <p class="sub-text">Pulsates notification banner when high distress is flagged.</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" checked id="toggle-flash">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Patient Configuration Settings -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h3>Monitored Resident Settings</h3>
+                <span class="card-subtitle">Active telemetry profile</span>
+              </div>
+              <div class="settings-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Resident Full Name</label>
+                    <input type="text" class="form-control" value="Lakshmi Narayanan" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Room / Suite</label>
+                    <input type="text" class="form-control" value="Anna Nagar, Chennai" readonly>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Condition</label>
+                    <input type="text" class="form-control" value="Mild-to-Moderate Dementia" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Patient ID</label>
+                    <input type="text" class="form-control" value="PATIENT-84920" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Monitoring & Telemetry Settings -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h3>Telemetry Polling & Thresholds</h3>
+                <span class="card-subtitle">Deterministic intelligence configuration</span>
+              </div>
+              <div class="thresholds-list">
+                <div class="threshold-item">
+                  <div class="threshold-header">
+                    <span class="badge-tag tag-green">GREEN (Normal)</span>
+                    <span>Distress 0 - 30</span>
+                  </div>
+                  <p class="sub-text">Standard comforting conversation. Companion uses calming grounding anchors.</p>
+                </div>
+                <div class="threshold-item">
+                  <div class="threshold-header">
+                    <span class="badge-tag tag-yellow">YELLOW (Monitoring)</span>
+                    <span>Distress 31 - 60 or Repetition &ge; 2x</span>
+                  </div>
+                  <p class="sub-text">Active monitoring state. Repetitive concerns are tracked without invalidating resident.</p>
+                </div>
+                <div class="threshold-item">
+                  <div class="threshold-header">
+                    <span class="badge-tag tag-red">RED (Escalation)</span>
+                    <span>Distress &gt; 60 or Acute Help Request</span>
+                  </div>
+                  <p class="sub-text">Caregiver escalation trigger. Alert added to dashboard for staff or family check-in.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live System Diagnostics & API Status -->
+            <div class="card settings-card">
+              <div class="card-header">
+                <h3>System Architecture & Health</h3>
+                <span class="card-subtitle">Live health status of SHECODES services</span>
+              </div>
+              <div class="diagnostics-list">
+                <div class="diag-row">
+                  <span class="diag-label">Flask API Backend</span>
+                  <span class="diag-val-online" id="diag-backend-status">Connected (200 OK)</span>
+                </div>
+                <div class="diag-row">
+                  <span class="diag-label">AI Intelligence Engine</span>
+                  <span class="diag-val-online" id="diag-ai-status">Active &amp; Deterministic</span>
+                </div>
+                <div class="diag-row">
+                  <span class="diag-label">Generative Responder</span>
+                  <span class="diag-val-online" id="diag-gemini-status">Checking...</span>
+                </div>
+                <div class="diag-row">
+                  <span class="diag-label">Persistent Health Memory</span>
+                  <span class="diag-val-online">Loaded (patient.json)</span>
+                </div>
+                <div class="diag-row">
+                  <span class="diag-label">Privacy PII Filter</span>
+                  <span class="diag-val-online">Active (Regex / NER Masking)</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="/caregiver/caregiver.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dementia Companion - Button Phone Simulator</title>
+
+  <!-- Stylesheet is kept separate from markup, as required -->
+  <link rel="stylesheet" href="/frontend/style.css" />
+</head>
+<body>
+
+  <!-- Top bar link to separate Caregiver Dashboard -->
+  <header style="width: clamp(260px, 90vw, 340px); display: flex; justify-content: space-between; align-items: center; margin-bottom: -4px;">
+    <span style="font-size: 12px; color: #9aa0ab; font-weight: 600;">🕊️ ELEANOR &bull; SUITE 14</span>
+    <a href="/caregiver" target="_blank" style="color: #9be89b; font-size: 12px; text-decoration: none; background: rgba(0,0,0,0.4); padding: 4px 10px; border-radius: 12px; border: 1px solid #3c3c40;">Caregiver Portal &rarr;</a>
+  </header>
+
+  <!-- ============================
+       PHONE BODY
+       Everything related to the physical phone lives inside
+       this single wrapper so it can be centered and scaled
+       responsively with CSS.
+  ============================= -->
+  <main class="phone" id="phone">
+
+    <!-- Speaker grill (purely decorative, adds realism) -->
+    <div class="speaker" aria-hidden="true"></div>
+
+    <!-- ============================
+         LCD SCREEN
+    ============================= -->
+    <section class="screen-wrapper">
+      <div class="screen" id="screen">
+        <div class="screen-status-bar">
+          <span class="signal" aria-hidden="true">▂▄▆█</span>
+          <span class="clock" id="clock">--:--</span>
+          <span class="phone-connection" id="phoneConnection" aria-live="polite">OFFLINE</span>
+          <span class="battery" aria-hidden="true">🔋</span>
+        </div>
+
+        <!-- The actual text the user speaks / companion replies shows up here -->
+        <div class="screen-display" id="display" aria-live="polite">
+          <span id="displayText">READY</span><span class="cursor">|</span>
+        </div>
+
+        <div class="screen-footer">
+          <span id="charCount">READY</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         SOFT / FUNCTION KEYS
+         Reserved area for features:
+         Call, End Call, Menu, etc.
+    ============================= -->
+    <section class="soft-keys">
+      <button class="soft-key" id="leftSoftKey" type="button">Menu</button>
+      <div class="nav-pad" aria-hidden="true">
+        <div class="nav-ring">
+          <button class="nav-btn nav-up" type="button" aria-label="Up"></button>
+          <button class="nav-btn nav-down" type="button" aria-label="Down"></button>
+          <button class="nav-btn nav-left" type="button" aria-label="Left"></button>
+          <button class="nav-btn nav-right" type="button" aria-label="Right"></button>
+          <button class="nav-btn nav-center" id="clearBtn" type="button">CLR</button>
+        </div>
+      </div>
+      <button class="soft-key" id="rightSoftKey" type="button">Names</button>
+    </section>
+
+    <!-- ============================
+         CALL / END-CALL BUTTONS
+         GREEN TALK / CALL BUTTON: Activates voice interaction
+         RED END CALL BUTTON: Ends interaction / stops audio
+    ============================= -->
+    <section class="call-keys">
+      <button class="call-btn call-accept" id="callBtn" type="button" title="Press Green Button to Talk">
+        📞
+      </button>
+      <button class="call-btn call-end" id="endBtn" type="button" title="End Call">
+        ✖
+      </button>
+    </section>
+
+    <!-- ============================
+         MAIN 4x3 KEYPAD
+         data-key holds the character sent to pressKey()
+         data-letters holds the T9 letters, shown for realism.
+    ============================= -->
+    <section class="keypad" id="keypad">
+      <button class="key" data-key="1" data-letters="">
+        <span class="key-num">1</span><span class="key-letters">&nbsp;</span>
+      </button>
+      <button class="key" data-key="2" data-letters="ABC">
+        <span class="key-num">2</span><span class="key-letters">ABC</span>
+      </button>
+      <button class="key" data-key="3" data-letters="DEF">
+        <span class="key-num">3</span><span class="key-letters">DEF</span>
+      </button>
+
+      <button class="key" data-key="4" data-letters="GHI">
+        <span class="key-num">4</span><span class="key-letters">GHI</span>
+      </button>
+      <button class="key" data-key="5" data-letters="JKL">
+        <span class="key-num">5</span><span class="key-letters">JKL</span>
+      </button>
+      <button class="key" data-key="6" data-letters="MNO">
+        <span class="key-num">6</span><span class="key-letters">MNO</span>
+      </button>
+
+      <button class="key" data-key="7" data-letters="PQRS">
+        <span class="key-num">7</span><span class="key-letters">PQRS</span>
+      </button>
+      <button class="key" data-key="8" data-letters="TUV">
+        <span class="key-num">8</span><span class="key-letters">TUV</span>
+      </button>
+      <button class="key" data-key="9" data-letters="WXYZ">
+        <span class="key-num">9</span><span class="key-letters">WXYZ</span>
+      </button>
+
+      <button class="key key-star" data-key="*" data-letters="">
+        <span class="key-num">*</span><span class="key-letters">&nbsp;</span>
+      </button>
+      <button class="key" data-key="0" data-letters="+">
+        <span class="key-num">0</span><span class="key-letters">+</span>
+      </button>
+      <button class="key key-hash" data-key="#" data-letters="">
+        <span class="key-num">#</span><span class="key-letters">&nbsp;</span>
+      </button>
+    </section>
+
+    <!-- Bottom mouthpiece / microphone hole, decorative -->
+    <div class="mic" aria-hidden="true"></div>
+  </main>
+
+  <!-- Small hint text below the phone for the user -->
+  <p class="hint">Press the <strong>GREEN 📞 BUTTON</strong> to speak with your companion.</p>
+
+  <!-- Remote audio element for WebRTC live caregiver session -->
+  <audio id="remoteAudio" autoplay playsinline style="display: none;"></audio>
+
+  <!-- JavaScript is kept in its own file, loaded at the end of body -->
+  <script src="/frontend/script.js?v=20260911-connection"></script>
+</body>
+</html>

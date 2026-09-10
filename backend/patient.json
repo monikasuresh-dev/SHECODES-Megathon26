@@ -1,0 +1,54 @@
+{
+  "patient_id": "PATIENT-84920",
+  "name": "Lakshmi Narayanan",
+  "preferred_name": "Lakshmi",
+  "age": 72,
+  "condition": "Mild-to-Moderate Alzheimer's Dementia",
+  "room_number": "Anna Nagar, Chennai",
+  "primary_language": "Tamil",
+  "family_and_contacts": {
+    "primary_caregiver": {
+      "name": "Ananya Narayanan",
+      "relationship": "Daughter",
+      "phone": "+91 90000 12345",
+      "visit_schedule": "Every evening around 5:30 PM",
+      "status_note": "Works in Chennai and visits Lakshmi faithfully every evening after work."
+    },
+    "secondary_contact": {
+      "name": "Ravi Narayanan",
+      "relationship": "Son",
+      "phone": "+91 90000 67890",
+      "location": "Lives in Bengaluru, calls on Sunday mornings"
+    },
+    "on_duty_nurse": {
+      "name": "Care Team",
+      "station_ext": "Chennai Home Care",
+      "notes": "Supports morning medicines and daily routines"
+    }
+  },
+  "comfort_anchors": {
+    "cherished_pet": {
+      "name": "Muthu",
+      "type": "Dog",
+      "memory_trigger": "Muthu is safe and happy at Ananya's house."
+    },
+    "favorite_hobbies": [
+      "Drawing traditional kolams",
+      "Listening to Carnatic music and old Tamil film songs",
+      "Cooking sambar, rasam, lemon rice and homemade sweets"
+    ],
+    "favorite_meal": "Filter coffee or warm tea with idli, dosa, sambar, rasam and curd rice",
+    "calming_phrase": "You are safe and loved at home. Ananya will come home at 5:30 PM."
+  },
+  "daily_routine": {
+    "morning": "Morning prayer, warm water and devotional music at 6:30 AM; idli or dosa at 8:00 AM",
+    "afternoon": "Kolam and garden time at 10:30 AM; rice, sambar, vegetables and curd at 1:00 PM",
+    "evening": "Tea and a light snack at 4:00 PM; Ananya's visit at 5:30 PM",
+    "bedtime": "Soft Carnatic music, familiar prayers and a calm wind-down at 8:30 PM"
+  },
+  "care_guidelines": {
+    "validation_approach": "Always validate Lakshmi's feelings first. Never argue, dispute memories, or abruptly correct dates.",
+    "grounding_strategy": "Remind gently of familiar constants: daughter Ananya's 5:30 PM visit, pet Muthu, and the Anna Nagar home.",
+    "response_length_limit": "Maximum 2-3 gentle sentences. Keep language simple, warm, and soothing."
+  }
+}
